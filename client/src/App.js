@@ -46,7 +46,7 @@ const App = () => {
         <Text marginBottom={"10px"}>
           <br/><br/>
           <div className="text1">
-          This image generator uses Stability AI to generate images using Stable Diffusion!<br/>It is also a bit heavy on the GPU lol
+          This generator uses Stable Diffusion by StabilityAI to generate images!<br/>PS. It is a bit heavy on the GPU lol
           </div>
           <br/>
           Made with ❤️ by Hardik Bhatia
