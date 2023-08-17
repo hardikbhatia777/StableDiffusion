@@ -1,0 +1,24 @@
+.heading1
+{
+    text-align: center;
+}
+
+.image1
+{
+    align-content: center;
+}
+
+.main
+{
+    height: 100vh;
+    background-color: black;
+    color: white;
+}
+.text1{
+    font-size: x-large;
+    color: #fff9f9d3;
+}
+.border {
+    width: fit-content;
+	text-align: center;
+}
