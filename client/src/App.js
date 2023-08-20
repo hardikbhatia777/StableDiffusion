@@ -21,10 +21,12 @@ const App = () => {
   const [image, updateImage] = useState();
   const [prompt, updatePrompt] = useState();
   const [loading, updateLoading] = useState();
+  const [style, updateStyle] = useState();
 
   const generate = async (prompt) => {
+    const final = prompt + "," + style
     updateLoading(true);
-    const result = await axios.get(`http://127.0.0.1:8000/?prompt=${prompt}`);
+    const result = await axios.get(`http://127.0.0.1:8000/?prompt=${final}`);
     updateImage(result.data);
     updateLoading(false);
   };
@@ -46,32 +48,39 @@ const App = () => {
         <Text marginBottom={"10px"}>
           <br/><br/>
           <div className="text1">
-          This generator uses Stable Diffusion by StabilityAI to generate images!<br/>PS. It is a bit heavy on the GPU lol
+          This generator uses Stable Diffusion by StabilityAI to generate images!<br/>PS. It is a bit heavy on the GPU <br/> Found any 'ew bugs'? Let me know via Github!
           </div>
           <br/>
           Made with ❤️ by Hardik Bhatia
         </Text>
         <br/>
-        <Wrap marginBottom={"10px"}>
           <Input
-           placeholder='Enter your prompt here'
+           placeholder='What do you wanna see? Keep it short and crisp :)'
            size='lg'
             value={prompt}
             onChange={(e) => updatePrompt(e.target.value)}
-            width={"1250px"}
+            width={"1050px"}
             height={"45px"}
-          ></Input>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          ></Input>
+            <br/> <br/>
+          <Input
+           placeholder='What style do you want to see it in (high res, realistic, anime, horror, comic etc.)? You can add multiple styles.'
+           size='lg'
+            value={style}
+            onChange={(e) => updateStyle(e.target.value)}
+            width={"900px"}
+            height={"45px"}
+          ></Input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <Button onClick={(e) => generate(prompt)} colorScheme={"yellow"} size={"lg"} height={"45px"}>
-            Generate
+            Go!
           </Button>
-        </Wrap>
-        <br/>
+        <br/><br/><br/>
         {loading ? (
           <><Progress size='xs' isIndeterminate /><Progress size='xs' isIndeterminate /><Progress size='xs' isIndeterminate /></>
         ) : image ? (
           <div className="image1">
             <Center>
-          <Image src={`data:image/png;base64,${image}`} boxShadow="lg" />
+          <Image src={`data:image/png;base64,${image}`} height='400px' width='400px' boxShadow="lg" />
           </Center>
           </div>
         ) : null}
